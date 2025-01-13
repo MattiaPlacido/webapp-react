@@ -1,9 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar as faStarRegular } from "@fortawesome/free-regular-svg-icons";
-import { faStar as faStarSolid } from "@fortawesome/free-solid-svg-icons";
+import ReviewCard from "../components/ReviewCard";
 
 export default function MovieShowPage() {
   const [filmDetails, setFilmDetails] = useState();
@@ -19,22 +16,6 @@ export default function MovieShowPage() {
         setLoading(false);
       });
   }, []);
-
-  function convertVoteInStars(vote) {
-    if (vote > 5) {
-      return "il voto deve essere da 1 a 5";
-    } else {
-      const stars = [];
-
-      for (let i = 0; i < vote; i++) {
-        stars.push(<FontAwesomeIcon icon={faStarSolid} />);
-      }
-      for (let i = vote; i < 5; i++) {
-        stars.push(<FontAwesomeIcon icon={faStarRegular} />);
-      }
-      return stars;
-    }
-  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -65,13 +46,11 @@ export default function MovieShowPage() {
           <div className="d-flex justify-content-around">
             {filmDetails.reviews.map((review) => {
               return (
-                <Card className="col-3 bg-black text-white">
-                  <Card.Body>
-                    <Card.Title className="pb-4">{review.name}</Card.Title>
-                    <Card.Text>{review.text}</Card.Text>
-                    <Card.Text>{convertVoteInStars(review.vote)}</Card.Text>
-                  </Card.Body>
-                </Card>
+                <ReviewCard
+                  name={review.name}
+                  vote={review.vote}
+                  text={review.text}
+                />
               );
             })}
           </div>
