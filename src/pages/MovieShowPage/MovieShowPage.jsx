@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ReviewCard from "../../components/ReviewCard";
-import styles from "./movieShow.module.css";
+import MovieCard from "../../components/MovieCard";
 
 export default function MovieShowPage() {
   const [filmDetails, setFilmDetails] = useState();
@@ -25,41 +25,26 @@ export default function MovieShowPage() {
   return (
     <>
       <div className="mx-auto py-4">
-        <div className="bg-black border-light border d-flex w-75 mx-auto">
-          <img
-            src={"http://localhost:3000/public/" + filmDetails.image}
-            alt={`${filmDetails.title} Poster`}
-            className={`${styles.poster_image}`}
-          />
-          <div className="p-3">
-            <p className="">
-              Titolo : <b className="fs-4">{filmDetails.title}</b>
-            </p>
-            <p className="">
-              Direttore : <b className="fs-4">{filmDetails.director}</b>
-            </p>
-            <p className="">
-              Genere : <b className="fs-4">{filmDetails.genre}</b>
-            </p>
-            <p className="">
-              Anno di uscita :{" "}
-              <b className="fs-4">{filmDetails.release_year}</b>
-            </p>
-            <p className="">
-              Riassunto (eng) : <b className="fs-4">{filmDetails.abstract}</b>
-            </p>
-          </div>
-        </div>
+        <MovieCard
+          image={filmDetails.image}
+          title={filmDetails.title}
+          director={filmDetails.director}
+          genre={filmDetails.genre}
+          release_year={filmDetails.release_year}
+          abstract={filmDetails.abstract}
+          key={id}
+        />
         <hr className="w-100"></hr>
         <div className="">
           <p className="fs-4 text-center">Recensioni </p>
           <div className="d-flex justify-content-around">
-            {filmDetails.reviews.map((review) => {
+            {filmDetails.reviews.map((review, index) => {
               return (
                 <ReviewCard
                   name={review.name}
                   vote={review.vote}
                   text={review.text}
+                  key={index}
                 />
               );
             })}
