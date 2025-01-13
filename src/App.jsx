@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 //PAGES
 import HomePage from "./pages/HomePage";
-import MovieShowPage from "./pages/MovieShowPage";
+import MovieShowPage from "./pages/MovieShowPage/MovieShowPage";
 
 function App() {
   return (
