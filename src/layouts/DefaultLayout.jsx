@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar.jsx";
+import styles from "./layouts.module.css";
 
 export default function DefaultLayout() {
   return (
-    <div className="bg-dark text-white vh-100">
+    <div className={`${styles.layout_wrapper}`}>
       <NavBar />
       <Outlet />
     </div>

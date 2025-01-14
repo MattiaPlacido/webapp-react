@@ -22,12 +22,12 @@ function convertVoteInStars(vote) {
 export default function ReviewCard({ name, text, vote, key }) {
   return (
     <Card
-      className="col-3 bg-black border border-white rounded-5 text-white"
+      className="col-2 bg-white border border-black border-3 rounded-1 text-black text-center m-3"
       key={key}
     >
       <Card.Body>
-        <Card.Title className="pb-4">{name}</Card.Title>
-        <Card.Text>{text}</Card.Text>
+        <Card.Title>{name}</Card.Title>
+        <Card.Text className="p-3">{text}</Card.Text>
         <Card.Text>{convertVoteInStars(vote)}</Card.Text>
       </Card.Body>
     </Card>

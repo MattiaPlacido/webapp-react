@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import MoviePreviewCard from "../components/MoviePreviewCard";
 
 export default function HomePage() {
   const [movieList, setMovieList] = useState([]);
@@ -13,15 +14,15 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="text-center d-flex flex-column gap-3 mt-5">
+    <div className="text-center d-flex gap-5 mt-5 justify-content-center">
       {movieList.map((movie) => {
         return (
-          <Link
-            className="text-decoration-none text-white"
-            to={"/movies/" + movie.id}
-          >
-            {movie.title}
-          </Link>
+          <MoviePreviewCard
+            id={movie.id}
+            title={movie.title}
+            content={movie.abstract}
+            image={movie.image}
+          />
         );
       })}
     </div>

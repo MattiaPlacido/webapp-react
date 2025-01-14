@@ -24,7 +24,7 @@ export default function MovieShowPage() {
 
   return (
     <>
-      <div className="mx-auto py-4">
+      <div className="pt-3">
         <MovieCard
           image={filmDetails.image}
           title={filmDetails.title}
@@ -37,7 +37,7 @@ export default function MovieShowPage() {
         <hr className="w-100"></hr>
         <div className="">
           <p className="fs-4 text-center">Recensioni </p>
-          <div className="d-flex justify-content-around">
+          <div className="d-flex row justify-content-center flex-wrap">
             {filmDetails.reviews.map((review, index) => {
               return (
                 <ReviewCard

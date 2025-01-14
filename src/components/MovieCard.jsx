@@ -10,28 +10,29 @@ export default function MovieCard({
   key,
 }) {
   return (
-    <div className="bg-black border-light border d-flex w-75 mx-auto" key={key}>
+    <div
+      className="bg-black border-light border d-flex w-75 mx-auto text-center"
+      key={key}
+    >
       <img
         src={"http://localhost:3000/public/" + image}
         alt={`${title} Poster`}
-        className={`${styles.poster_image}`}
+        className={`col-2 ${styles.poster_image}`}
       />
-      <div className="p-3">
+      <div className="p-3 col-10">
         <p>
-          Titolo : <b className="fs-4">{title}</b>
+          <b className="fs-4">{title}</b>
         </p>
         <p>
-          Direttore : <b className="fs-4">{director}</b>
+          <b className="fs-4">{director}</b>
         </p>
         <p>
-          Genere : <b className="fs-4">{genre}</b>
+          <b className="fs-4">{genre}</b>
         </p>
         <p>
-          Anno di uscita : <b className="fs-4">{release_year}</b>
+          <b className="fs-4">{release_year}</b>
         </p>
-        <p>
-          Riassunto : <b className="fs-4">{abstract}</b>
-        </p>
+        <p className="fs-5">{abstract}</p>
       </div>
     </div>
   );
