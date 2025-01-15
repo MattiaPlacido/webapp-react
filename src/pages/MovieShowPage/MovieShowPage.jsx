@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import ReviewCard from "../../components/ReviewCard";
 import MovieCard from "../../components/MovieCard";
 import FormReviewButton from "../../components/FormReviewButton";
+import ReviewList from "../../components/ReviewList";
 
 export default function MovieShowPage() {
   const [filmDetails, setFilmDetails] = useState();
@@ -40,18 +40,7 @@ export default function MovieShowPage() {
           <div className="d-flex flex-column align-items-center my-4">
             <p className="fs-4 text-center">Recensioni </p>
             <FormReviewButton movieId={id} />
-          </div>
-          <div className="d-flex row justify-content-center flex-wrap">
-            {filmDetails.reviews.map((review, index) => {
-              return (
-                <ReviewCard
-                  name={review.name}
-                  vote={review.vote}
-                  text={review.text}
-                  key={index}
-                />
-              );
-            })}
+            <ReviewList reviews={filmDetails.reviews} />
           </div>
         </div>
       </div>
