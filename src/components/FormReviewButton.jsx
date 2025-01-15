@@ -17,30 +17,47 @@ export default function FormReviewButton({ movieId }) {
     setFormData({ ...formData, [name]: value });
   };
 
+  const validateForm = ({ name, vote, text }) => {
+    let hasErrors = false;
+    if (!name || !text) {
+      hasErrors = true;
+    }
+    if (isNaN(parseInt(vote))) {
+      hasErrors = true;
+    }
+    return !hasErrors;
+  };
+
   const handleSubmit = (e) => {
-    fetch(`http://localhost:3000/movies/${movieId}/addreview`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: formData.name,
-        vote: formData.vote,
-        text: formData.text,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        data
-          ? console.log("Recensione inviata con successo!")
-          : console.log("Si è verificato qualche errore");
+    if (validateForm(formData)) {
+      fetch(`http://localhost:3000/movies/${movieId}/addreview`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          vote: formData.vote,
+          text: formData.text,
+        }),
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-    console.log(movieId);
-    setFormData(initialFormData);
-    setShow(false);
+        .then((res) => res.json())
+        .then((data) => {
+          data
+            ? console.log("Review sent successfully!")
+            : console.log("An error has accurred sending the review.");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      console.log(movieId);
+      setFormData(initialFormData);
+      setShow(false);
+    } else {
+      const err = new Error("Parameters are not valid for the request.");
+      err.code = 400;
+      throw err;
+    }
   };
 
   return (
@@ -59,7 +76,7 @@ export default function FormReviewButton({ movieId }) {
               <Form.Label>Nome</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Il tuo nome"
+                placeholder="Your name"
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
@@ -90,7 +107,7 @@ export default function FormReviewButton({ movieId }) {
               <Form.Control
                 as="textarea"
                 rows={3}
-                placeholder="Lascia il tuo pensiero"
+                placeholder="Leave your thoughts"
                 name="text"
                 value={formData.text}
                 onChange={handleInputChange}
