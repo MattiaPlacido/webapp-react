@@ -18,7 +18,7 @@ export default function FormReviewButton({ movieId }) {
   };
 
   const handleSubmit = (e) => {
-    fetch("http://localhost:3000/movies/addreview" + movieId, {
+    fetch(`http://localhost:3000/movies/${movieId}/addreview`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
