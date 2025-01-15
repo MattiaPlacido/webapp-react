@@ -35,7 +35,7 @@ export default function MovieShowPage() {
           abstract={filmDetails.abstract}
           key={id}
         />
-        <hr className="w-100"></hr>
+        <hr className=""></hr>
         <div className="">
           <div className="d-flex flex-column align-items-center my-4">
             <p className="fs-4 text-center">Recensioni </p>
